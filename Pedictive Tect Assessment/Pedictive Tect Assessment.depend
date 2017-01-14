@@ -1,6 +1,20 @@
 # depslib dependency file v1.0
-1480862399 source:e:\labs\pedictive tect assessment\src\main.c
-	<malloc.h>
+1484317946 source:e:\labs\pedictive tect assessment\src\main.c
 	<stdio.h>
+	"Trie.h"
+	"FileOperations.h"
+
+1481812428 source:e:\labs\pedictive tect assessment\src\fileoperations.c
+	"FileOperations.h"
+	<stdio.h>
+	<malloc.h>
 	<windows.h>
+
+1481413698 e:\labs\pedictive tect assessment\src\fileoperations.h
+
+1481714820 e:\labs\pedictive tect assessment\src\trie.h
+
+1481804246 source:e:\labs\pedictive tect assessment\src\trie.c
+	"Trie.h"
+	<malloc.h>
 

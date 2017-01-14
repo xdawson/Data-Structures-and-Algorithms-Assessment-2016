@@ -1,82 +1,148 @@
-#include <malloc.h>
 #include <stdio.h>
-//idk if this will be okay, i can write about it which is cool but theres no makrs for this 
-#define _WIN32_WINNT 0x0501
-#include <windows.h>
+#include "Trie.h"
+#include "FileOperations.h"
 
-//returns a void * 
-//maybe return a typed pointer once i figure out how this data is gonna be treated?
-void *
-LoadFile(char *FileName)
+int
+main()
 {
-	HANDLE FileHandle = CreateFileA(FileName,
-  			   						GENERIC_READ,
-			   						FILE_SHARE_READ,
- 			   						0,
-        	   						OPEN_EXISTING,
-     		   						0,
- 			   						0);
+	void *FileMemory = LoadFile("data/words.txt");
 
-	//Need to resolve all else cases or remove them
-	if(FileHandle != INVALID_HANDLE_VALUE)
+	char *TextFile = (char *)FileMemory;
+
+	trie_root_node *Root = TrieRootNodeConstructor();
+
+	int Position;
+
+	trie_node *CurrentNode = Root->FirstLetter;
+
+	printf("population started\n");
+
+	for(Position = 0; TextFile[Position] != 0; Position++)
 	{
-		LARGE_INTEGER FileSize;  
-
-		if(GetFileSizeEx(FileHandle, &FileSize))
+		//the \r case will already have reset the CurrentNode to Root
+		//so here we can just skip \n
+		if(TextFile[Position] == '\n')
 		{
-			void *FileContents = malloc(FileSize.QuadPart);
+			continue;
+		}
 
-			if(FileContents)
+		//This is here because all the weird characters 
+		//at the end of the text file have values of < 0
+		//NEED TO TEST THIS IN LABSSS
+		if(TextFile[Position] < 0)
+		{
+			continue;
+		}
+
+		if(TextFile[Position] == CurrentNode->Value)
+		{
+			//useful here as checks for repeated words
+			//check
+			if(TextFile[Position] == '\r')
 			{
-				DWORD BytesRead;
-				if(ReadFile(FileHandle, FileContents, FileSize.QuadPart, &BytesRead, 0))
-				{
-					printf("ReadFile success");
-					return FileContents;
-				}
-				else
-				{
-					printf("ReadFile failure");
-					return NULL;
-				}					
+				CurrentNode->WordMarker = 1;
+				CurrentNode = Root->FirstLetter;
 			}
 			else
 			{
-				printf("Failed to allocate memory for the file");
-				return NULL;				
+				//deal with it
+				if(CurrentNode->Child != NULL)
+				{
+					CurrentNode = CurrentNode->Child;		
+				}
+				else
+				{
+					CurrentNode->Child = TrieNodeConstructor(0);
+					CurrentNode = CurrentNode->Child;
+				}
 			}
 		}
 		else
 		{
-			printf("Failed to get file size");
-			return NULL;			
+			if(CurrentNode->Value == 0)
+			{
+				CurrentNode->Value = TextFile[Position];
+
+				//check
+				if(TextFile[Position] == '\r')
+				{
+					CurrentNode->WordMarker = 1;
+					CurrentNode = Root->FirstLetter;
+				}
+				else
+				{
+					//deal with it
+					if(CurrentNode->Child != NULL)
+					{
+						CurrentNode = CurrentNode->Child;		
+					}
+					else
+					{
+						CurrentNode->Child = TrieNodeConstructor(0);
+						CurrentNode = CurrentNode->Child;
+					}
+				}
+			}
+			else
+			{
+				while(CurrentNode->Sibling != NULL)
+				{
+					if(CurrentNode->Value == TextFile[Position])
+					{
+						//check
+						if(TextFile[Position] == '\r')
+						{
+							CurrentNode->WordMarker = 1;
+							CurrentNode = Root->FirstLetter;
+						}
+						else
+						{
+							//deal with it
+							if(CurrentNode->Child != NULL)
+							{
+								CurrentNode = CurrentNode->Child;		
+							}
+							else
+							{
+								CurrentNode->Child = TrieNodeConstructor(0);
+								CurrentNode = CurrentNode->Child;
+							}
+						}
+						break;
+					}
+					else
+					{
+						CurrentNode = CurrentNode->Sibling;
+					}
+				}
+
+				//dealing with case of the last link with Sibling being Null but this being the right 
+				//value
+				if(CurrentNode->Value == TextFile[Position])
+				{
+					if(CurrentNode->Child != NULL)
+					{
+						CurrentNode = CurrentNode->Child;		
+					}
+					else
+					{
+						CurrentNode->Child = TrieNodeConstructor(0);
+						CurrentNode = CurrentNode->Child;
+					}
+				}
+				else if(CurrentNode->Sibling == NULL)
+				{
+					CurrentNode->Sibling = TrieNodeConstructor(TextFile[Position]);
+					CurrentNode = CurrentNode->Sibling;
+					CurrentNode->Child = TrieNodeConstructor(0);
+					CurrentNode = CurrentNode->Child;
+				}
+
+			}
 		}
 	}
-	else
-	{
-		printf("Invalid file handle");
-		return NULL;		
-	}
-}
 
-//since this function is 1 line long does it really need to be its own function
-//Does it improve readability??
-void
-FreeFile(void *FileMemory)
-{
-	free(FileMemory);
-}
-
-//do I even need WinMain here as opposed to main? Could remove WinMain to stop myself having 
-//to inlude Windows specific code.
-//Could alsmost certainly move this into its own .c file and have a header for the load function  
-int CALLBACK 
-WinMain(HINSTANCE Instance,
-		HINSTANCE PrevInstance,
-		LPSTR     lpCmdLine,
-		int       nCmdShow)
-{
-	void * FileMemory = LoadFile("data/words.txt");
+	printf("population ended\n");			
 
 	FreeFile(FileMemory);
 

@@ -31,6 +31,14 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="src/FileOperations.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/FileOperations.h" />
+		<Unit filename="src/Trie.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/Trie.h" />
 		<Unit filename="src/main.c">
 			<Option compilerVar="CC" />
 		</Unit>
