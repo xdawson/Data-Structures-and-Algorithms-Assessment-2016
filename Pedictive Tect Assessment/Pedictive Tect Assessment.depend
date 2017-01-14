@@ -18,3 +18,22 @@
 	"Trie.h"
 	<malloc.h>
 
+1484402966 source:c:\users\chris\documents\github\data-structures-and-algorithms-assessment-2016\pedictive tect assessment\src\fileoperations.c
+	"FileOperations.h"
+	<stdio.h>
+	<malloc.h>
+	<windows.h>
+
+1484402966 c:\users\chris\documents\github\data-structures-and-algorithms-assessment-2016\pedictive tect assessment\src\fileoperations.h
+
+1484402966 source:c:\users\chris\documents\github\data-structures-and-algorithms-assessment-2016\pedictive tect assessment\src\main.c
+	<stdio.h>
+	"Trie.h"
+	"FileOperations.h"
+
+1484402966 c:\users\chris\documents\github\data-structures-and-algorithms-assessment-2016\pedictive tect assessment\src\trie.h
+
+1484402966 source:c:\users\chris\documents\github\data-structures-and-algorithms-assessment-2016\pedictive tect assessment\src\trie.c
+	"Trie.h"
+	<malloc.h>
+

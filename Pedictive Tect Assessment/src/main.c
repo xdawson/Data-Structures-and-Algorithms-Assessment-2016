@@ -2,20 +2,22 @@
 #include "Trie.h"
 #include "FileOperations.h"
 
-int
-main()
+trie_node*
+CalculateNextNode(trie_node* CurrentNode)
 {
-	void *FileMemory = LoadFile("data/words.txt");
+	  
+}
 
-	char *TextFile = (char *)FileMemory;
 
+//might need to move this to a Trie file to do data hiding things?
+trie_root_node* 
+CreateTrie(char* TextFile)
+{
 	trie_root_node *Root = TrieRootNodeConstructor();
 
 	int Position;
 
 	trie_node *CurrentNode = Root->FirstLetter;
-
-	printf("population started\n");
 
 	for(Position = 0; TextFile[Position] != 0; Position++)
 	{
@@ -38,24 +40,7 @@ main()
 		{
 			//useful here as checks for repeated words
 			//check
-			if(TextFile[Position] == '\r')
-			{
-				CurrentNode->WordMarker = 1;
-				CurrentNode = Root->FirstLetter;
-			}
-			else
-			{
-				//deal with it
-				if(CurrentNode->Child != NULL)
-				{
-					CurrentNode = CurrentNode->Child;		
-				}
-				else
-				{
-					CurrentNode->Child = TrieNodeConstructor(0);
-					CurrentNode = CurrentNode->Child;
-				}
-			}
+			
 		}
 		else
 		{
@@ -137,12 +122,23 @@ main()
 					CurrentNode->Child = TrieNodeConstructor(0);
 					CurrentNode = CurrentNode->Child;
 				}
-
 			}
 		}
 	}
 
-	printf("population ended\n");			
+	return Root;
+}
+
+int
+main()
+{
+	void *FileMemory = LoadFile("data/words.txt");
+
+	char *TextFile = (char *)FileMemory;
+
+	trie_root_node* Root = CreateTrie(TextFile);
+
+
 
 	FreeFile(FileMemory);
 
