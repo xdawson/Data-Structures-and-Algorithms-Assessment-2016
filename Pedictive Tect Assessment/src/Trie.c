@@ -29,3 +29,5 @@ TrieRootNodeConstructor()
 	return Root;
 }
 
+//TODO destructors
+//TODO insert(maybe) and search functions

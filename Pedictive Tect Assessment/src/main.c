@@ -1,12 +1,9 @@
 #include <stdio.h>
 #include "Trie.h"
 #include "FileOperations.h"
-
-trie_node*
-CalculateNextNode(trie_node* CurrentNode)
-{
-
-}
+#include <malloc.h>
+#include <conio.h>
+#include <string.h>
 
 
 //might need to move this to a Trie file to do data hiding things?
@@ -176,26 +173,38 @@ main()
 
 	trie_root_node* Root = CreateTrie(TextFile);
 
-	int KeyPressed;
+	char KeyPressed;
 
-	//ASCII Keycode for ESC
+	//ASCII Keycodes
 	int EscapeKey = 27;
 
 	int SpaceKey = 32;
 
 	int TabKey = 9;
 
-	//10 here is a starting estimate of how long the largest work in the 
+	//20 here is a starting estimate of how long the largest work in the 
 	//dictionary is. Probably good to find the size of the largest word when poplating the trie
-	int BufferSize = 10;
-	int *PrefixBuffer = malloc(sizeof(int) * BufferSize);
+	int BufferSize = 20;
+	char *PrefixBuffer = malloc(sizeof(char) * BufferSize);
+	char *OutputBuffer = malloc(sizeof(char) * BufferSize);
+	//flush buffer before use
+	int i;
+	for(i = 0; i < BufferSize; i++)
+	{
+		PrefixBuffer[i] = 0;
+	}
 
 	int LetterCounter = 0;
 
 	//text entry loop
 	while(KeyPressed != EscapeKey)
 	{
-		KeyPressed = getch();
+		do
+		{
+			KeyPressed = getch();
+			printf("%c", KeyPressed);
+		}
+		while(KeyPressed == 0);
 
 		if(KeyPressed == SpaceKey)
 		{
@@ -211,7 +220,71 @@ main()
 		else if(KeyPressed == TabKey)
 		{
 			//give suggestions
-			
+			trie_node *CurrentNode = Root->FirstLetter;
+
+			int FoundPrefix = 1;
+
+			//find the position of this prefix in the trie
+			int i;
+			for(i = 0; PrefixBuffer[i] != 0; i++)
+			{
+				if(PrefixBuffer[i] == CurrentNode->Value)
+				{
+					CurrentNode = CurrentNode->Child;
+				}
+				else
+				{
+					while(CurrentNode->Sibling != NULL)
+					{
+						if(CurrentNode->Value == PrefixBuffer[i])
+						{
+							CurrentNode = CurrentNode->Child;
+							break;
+						}
+						else
+						{
+							CurrentNode = CurrentNode->Sibling;
+						}
+					}
+					//continue;
+
+					//maybe dont need if as i know the control flow,
+					//will only get here if sibling == NULL
+					if(CurrentNode->Sibling == NULL)
+					{
+						if(CurrentNode->Value == PrefixBuffer[i])
+						{
+							CurrentNode = CurrentNode->Child;
+						}
+						else
+						{
+							printf("No words with current prefix\n");
+							FoundPrefix = 0;
+							//breaks out of the for loop
+							break;
+						}
+					}
+
+
+				}
+			}
+
+			//found current node
+			if(FoundPrefix)
+			{
+				strcpy(OutputBuffer, PrefixBuffer);
+
+				printf("%s", OutputBuffer);
+
+				
+				/*int i;
+				int NumberOfOptionsToDisplay = 3;
+				for(i = 0; i < NumberOfOptionsToDisplay; i++)
+				{
+					
+				}*/
+			}
+
 		}
 		else
 		{
