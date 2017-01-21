@@ -32,10 +32,11 @@
 
 1484402966 c:\users\chris\documents\github\data-structures-and-algorithms-assessment-2016\pedictive tect assessment\src\trie.h
 
-1484761980 source:c:\users\chris\documents\github\data-structures-and-algorithms-assessment-2016\pedictive tect assessment\src\main.c
+1485006099 source:c:\users\chris\documents\github\data-structures-and-algorithms-assessment-2016\pedictive tect assessment\src\main.c
 	<stdio.h>
 	"Trie.h"
 	"FileOperations.h"
 	<malloc.h>
 	<conio.h>
+	<string.h>
 
