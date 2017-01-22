@@ -1,10 +1,14 @@
 # depslib dependency file v1.0
-1484505350 source:e:\labs\pedictive tect assessment\src\main.c
+1485110112 source:e:\labs\pedictive tect assessment\src\main.c
 	<stdio.h>
 	"Trie.h"
 	"FileOperations.h"
+	"Buffer.h"
+	<malloc.h>
+	<conio.h>
+	<string.h>
 
-1484321586 source:e:\labs\pedictive tect assessment\src\fileoperations.c
+1485105066 source:e:\labs\pedictive tect assessment\src\fileoperations.c
 	"FileOperations.h"
 	<stdio.h>
 	<malloc.h>
@@ -12,31 +16,16 @@
 
 1481413698 e:\labs\pedictive tect assessment\src\fileoperations.h
 
-1481714820 e:\labs\pedictive tect assessment\src\trie.h
+1485092024 e:\labs\pedictive tect assessment\src\trie.h
 
-1481804246 source:e:\labs\pedictive tect assessment\src\trie.c
+1485109584 source:e:\labs\pedictive tect assessment\src\trie.c
 	"Trie.h"
-	<malloc.h>
-
-1484402966 source:c:\users\chris\documents\github\data-structures-and-algorithms-assessment-2016\pedictive tect assessment\src\fileoperations.c
-	"FileOperations.h"
 	<stdio.h>
 	<malloc.h>
-	<windows.h>
 
-1484402966 c:\users\chris\documents\github\data-structures-and-algorithms-assessment-2016\pedictive tect assessment\src\fileoperations.h
+1485109804 e:\labs\pedictive tect assessment\src\buffer.h
 
-1484749969 source:c:\users\chris\documents\github\data-structures-and-algorithms-assessment-2016\pedictive tect assessment\src\trie.c
-	"Trie.h"
+1485109457 source:e:\labs\pedictive tect assessment\src\buffer.c
+	"buffer.h"
 	<malloc.h>
-
-1484402966 c:\users\chris\documents\github\data-structures-and-algorithms-assessment-2016\pedictive tect assessment\src\trie.h
-
-1485007059 source:c:\users\chris\documents\github\data-structures-and-algorithms-assessment-2016\pedictive tect assessment\src\main.c
-	<stdio.h>
-	"Trie.h"
-	"FileOperations.h"
-	<malloc.h>
-	<conio.h>
-	<string.h>
 

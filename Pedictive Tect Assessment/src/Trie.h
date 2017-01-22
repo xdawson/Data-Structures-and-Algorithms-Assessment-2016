@@ -18,3 +18,18 @@ TrieRootNodeConstructor();
 
 trie_node *
 TrieNodeConstructor(char Value);
+
+trie_node *
+MoveToChild(trie_node *CurrentNode);
+
+trie_node *
+FindNextNode(trie_root_node *Root, trie_node *CurrentNode, char *TextFile, int Position);
+
+trie_root_node *
+CreateTrie(char *TextFile);
+
+trie_node *
+FindPrefixNode(trie_root_node *Root, char *Prefixbuffer);
+
+int
+NumberOfSiblings(trie_node *CurrentNode);

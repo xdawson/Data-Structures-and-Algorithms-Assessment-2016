@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <malloc.h>
 
-//idk if this will be okay, i can write about it which is cool but theres no makrs for this 
+//idk if this will be okay, i can write about it which is cool but theres no makrs for this
+//without this GetFileSizeEx doesnt work because fo the compiler being shite 
 #define _WIN32_WINNT 0x0501
 #include <windows.h>
 
@@ -12,12 +13,12 @@ void *
 LoadFile(char *FileName)
 {
 	HANDLE FileHandle = CreateFile(FileName,
-  			   						GENERIC_READ,
-			   						FILE_SHARE_READ,
- 			   						0,
-        	   						OPEN_EXISTING,
-     		   						0,
- 			   						0);
+  			   					   GENERIC_READ,
+			   					   FILE_SHARE_READ,
+ 			   					   0,
+        	   					   OPEN_EXISTING,
+     		   					   0,
+ 			   					   0);
 
 	if(FileHandle != INVALID_HANDLE_VALUE)
 	{
