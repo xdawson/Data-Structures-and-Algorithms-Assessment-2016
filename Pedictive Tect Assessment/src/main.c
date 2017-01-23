@@ -35,13 +35,14 @@ PredictiveText(trie_root_node *Root)
 	//text entry loop
 	while(KeyPressed != EscapeKey)
 	{
+
 		do
 		{
 			KeyPressed = getch();
 
 			if(KeyPressed != TabKey)
 			{
-				InputBuffer.Memory[InputBuffer.Position++] = KeyPressed;				
+				InputBuffer.Memory[InputBuffer.Position++] = KeyPressed;
 			}
 		}
 		while(KeyPressed == 0);
@@ -60,7 +61,7 @@ PredictiveText(trie_root_node *Root)
 			{
 				strcpy(OutputBuffer.Memory, PrefixBuffer.Memory);
 
-				trie_node *Temp = PrefixNode;				
+				trie_node *Temp = PrefixNode;
 
 				//find the first 0 char of output buffer
 				OutputBuffer.Position = NumberOfEnteredCharacters(OutputBuffer);
@@ -71,7 +72,7 @@ PredictiveText(trie_root_node *Root)
 
 					if(Temp->WordMarker == 1)
 					{
-						
+
 						trie_node *Option = Temp;
 						printf("\nPress 1. to select the word below\n1. %s\n", OutputBuffer.Memory);
 
@@ -88,7 +89,7 @@ PredictiveText(trie_root_node *Root)
 									strcpy(&InputBuffer.Memory[(InputBuffer.Position - LetterCounter)], OutputBuffer.Memory);
 									InputBuffer.Position = NumberOfEnteredCharacters(InputBuffer);
 
-									InputBuffer.Memory[InputBuffer.Position++] = SpaceKey; 
+									InputBuffer.Memory[InputBuffer.Position++] = SpaceKey;
 									FlushBuffer(PrefixBuffer);
 									LetterCounter = 0;
 									Chosen = 1;
@@ -100,14 +101,14 @@ PredictiveText(trie_root_node *Root)
 									PrefixBuffer.Memory[LetterCounter++] = Key;
 									Chosen = 1;
 								}
-								
+
 								FlushBuffer(OutputBuffer);
 							}
 						}
 
 						break;
 					}
-					
+
 					Temp = Temp->Child;
 				}
 			}
@@ -132,7 +133,7 @@ main()
 
 	trie_root_node* Root = CreateTrie(TextFile);
 
-	
+
 	PredictiveText(Root);
 
 

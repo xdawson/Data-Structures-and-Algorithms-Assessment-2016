@@ -29,3 +29,33 @@
 	"buffer.h"
 	<malloc.h>
 
+1485117444 source:c:\users\chris\documents\github\data-structures-and-algorithms-assessment-2016\pedictive tect assessment\src\buffer.c
+	"buffer.h"
+	<malloc.h>
+
+1485117444 c:\users\chris\documents\github\data-structures-and-algorithms-assessment-2016\pedictive tect assessment\src\buffer.h
+
+1485117444 source:c:\users\chris\documents\github\data-structures-and-algorithms-assessment-2016\pedictive tect assessment\src\fileoperations.c
+	"FileOperations.h"
+	<stdio.h>
+	<malloc.h>
+	<windows.h>
+
+1484402966 c:\users\chris\documents\github\data-structures-and-algorithms-assessment-2016\pedictive tect assessment\src\fileoperations.h
+
+1485125283 source:c:\users\chris\documents\github\data-structures-and-algorithms-assessment-2016\pedictive tect assessment\src\main.c
+	<stdio.h>
+	"Trie.h"
+	"FileOperations.h"
+	"Buffer.h"
+	<malloc.h>
+	<conio.h>
+	<string.h>
+
+1485117444 c:\users\chris\documents\github\data-structures-and-algorithms-assessment-2016\pedictive tect assessment\src\trie.h
+
+1485117444 source:c:\users\chris\documents\github\data-structures-and-algorithms-assessment-2016\pedictive tect assessment\src\trie.c
+	"Trie.h"
+	<stdio.h>
+	<malloc.h>
+
